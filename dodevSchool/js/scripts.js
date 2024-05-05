@@ -3,33 +3,68 @@
 ////////////////////////////////////////////////////////////////////////
 
 class Aluno {
-  
+Nome 
+Idade
+Nota
+constructor(nome,idade,nota){
+this.Nome = nome
+this.Idade = idade
+this.Nota = nota 
 }
 
-// Array
+}
+
+let arrayAlunos= []
 
 
 //funções projeto
 
-function CadastrarAluno() {
+function CadastrarAluno(nome, idade , nota, array) {
+  let objetoAluno = new Aluno (nome, idade, nota)
+   if (!array.some(x => x.Nome == nome )){
+    array.push(objetoAluno)
+    return objetoAluno
+   }
+}
+
+function OrdenarPorNota(array) {
+array.sort((a,b) => a.Nota - b.Nota)
+return array
+}
+
+function OrdenarPorIdade(array) {
+  array.sort((a,b) =>  b.Idade - a.Idade)
+  return array
+}
+
+function OrdenarPorNome(array) {
+  array.sort((a, b) => {
+    const nomeA = a.Nome.toUpperCase();
+    const nomeB = b.Nome.toUpperCase();
+    
+    if (nomeA < nomeB) {
+      return -1;
+    }
+    if (nomeA > nomeB) {
+      return 1;
+    }
+    return 0; 
+  });
+  return array
+}
+
+function CalcularMedia(array){
+  if (array.lenght === 0) {
+    return 0 
+  }
+  let somaNotas = 0 
+  array.forEach((Aluno)=>{
+    somaNotas +=Number(Aluno.Nota)
+  })
+  const media = somaNotas / array.lenght 
+  return media 
+  }
   
-}
-
-function OrdenarPorNota() {
- 
-}
-
-function OrdenarPorIdade() {
-
-}
-
-function OrdenarPorNome() {
-
-}
-
-function CalcularMedia(){
-
-}
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -226,13 +261,13 @@ filterBtn.addEventListener("change", (e) => {
   filterAlunos(filterValue);
 });
 
-// Local Storage
+ //Local Storage
 
 // const loadAlunos = () => {
 
-//   arrayAlunos.forEach((aluno) => {
+  // arrayAlunos.forEach((aluno) => {
 //     saveAluno(aluno.Nome, aluno.Idade, aluno.Nota, 0);
 //   });
 // };
 
-// loadAlunos();
+ //loadAlunos();
